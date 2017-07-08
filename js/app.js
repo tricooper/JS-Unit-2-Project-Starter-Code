@@ -22,6 +22,7 @@ $('body').on('click', '#NewsSources li', function(){
 
 $(document).ready(function() {
 		$('body').on('click', '#search', function(){
+		$('.hidden').show();
 		var selectedSource = $('#NewsSources li.selected a').attr('data-grab');
 		var request = $.ajax({
 			url: selectedSource,
@@ -45,6 +46,7 @@ var compileHtml = function (articleHtml) {
 
 	 var findRss = function(data) {
 	 	var rssSearch = $('#sourceName').text();
+	 	$('.hidden').hide();
 		if (rssSearch === 'Digg') {
 			populateDigg(data);
 			
