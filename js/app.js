@@ -4,19 +4,8 @@
 
 'use strict';
 
-var DiggRss = {
 
-};
 
-var MashableRss = {
-
-};
-
-var RedditRss = {
-
-};
-
-var diggUrl= "https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json"
 
 // Take li Content and Output it on the News Source
 
@@ -38,10 +27,18 @@ $(document).ready(function() {
 			url: selectedSource,
 			success: findRss
 			 //ajax request
-
 		}); 
 
 });
+
+// compile HTML function
+
+var compileHtml = function (articleHtml) {
+	var articleTemplate = $('#article-template').html();
+	var articleScript = Handlebars.compile(articleTemplate);
+	return articleScript(articleHtml);
+
+}
 
 
 // create a function for each Digg, Mashable, Reddit
@@ -63,29 +60,73 @@ $(document).ready(function() {
 	// populate Digg function
 
 	var populateDigg = function(data) {
-		console.log(data);
-		console.log(data.data.feed[0].content.media.images[0].url);
 		var posterUrl = data.data.feed[0].content.media.images[0].url;
-	// 	var poster = 
-	// 	// for loop to loop through data
+	// 	 for loop to loop through data
+	$('#main').html('');
+	for (var i = 0; i < 4; i ++ ) {
+		var feed = data.data.feed[i];
+		var articleObj = {
+			articlePoster: feed.content.media.images[0].original_url,
+			impressions: feed.fb_shares.count,
+			lifestyle: feed.content.description,
+			articleTitle: feed.content.title_alt,
+			articleUrl: feed.content.original_url
+			};
 
-	// 		// compile HTML from object
+	// 		 compile HTML from object -- clean this up before Monday (compile into seperate function)
+		var articleHtml = compileHtml(articleObj);
+		$('#main').append(articleHtml);
 
-	// 		// append HTML
-	 }
+
+
+		} // for loop
+	 } // populate Digg function
 
 	// populate Mashable function
 
 	var populateMashable = function(data) {
-		console.log(data);
-	}
+	// 	 for loop to loop through data
+	$('#main').html('');
+	for (var i = 0; i < 4; i ++ ) {
+		var feed = data.new[i];
+		var articleObj = {
+			articlePoster: feed.image,
+			impressions: feed.shares.total,
+			lifestyle: feed.excerpt,
+			articleTitle: feed.title,
+			articleUrl: feed.link
+			};
+
+		var articleHtml = compileHtml(articleObj);
+		$('#main').append(articleHtml);
 
 
-	// populate Reddit function
+
+		} // for loop
+	 } // end populate Mashable function
+	
+
+
+// populate Reddit function
 
 	var populateReddit = function(data) {
-		console.log(data);
-	}
+	console.log(data);
+	console.log(data.data.children[0].data.title);
+	$('#main').html('');
+	for (var i = 0; i < 4; i ++ ) {
+		var feed = data.data.children[i];
+		var articleObj = {
+			articlePoster: feed.data.thumbnail,
+			impressions: feed.data.ups,
+			lifestyle: '',
+			articleTitle: feed.data.title,
+			articleUrl: 'https://www.reddit.com/' + feed.data.permalink
+			};
+
+		var articleHtml = compileHtml(articleObj);
+		$('#main').append(articleHtml);
+		} // for loop
+	} // end of Reddit function
 
 
   
