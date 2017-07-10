@@ -19,7 +19,7 @@
               <img src={{{articlePoster}}} alt="" />
             </section>
             <section class="articleContent">
-                <a href={{{articleUrl}}} target="_blank"><h3>{{{articleTitle}}}</h3></a>
+                <a href='#' target="_blank" data-articleUrl={{{articleUrl}}}><h3>{{{articleTitle}}}</h3></a>
                 <h6>{{{lifestyle}}}</h6>
             </section>
             <section class="impressions">
@@ -43,7 +43,7 @@
             <a href="#"><h1>Feedr</h1></a>
             <nav>
               <ul>
-                <li><a href="#">News Source: <span id="sourceName">Source Name</span></a>
+                <li><a href="#">News Source: <span id="sourceName">Digg</span></a>
                   <ul id="NewsSources">
                       <li><a href="#" data-grab="https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json">Digg</a></li>
                       <li><a href="#" data-grab="https://accesscontrolalloworiginall.herokuapp.com/http://mashable.com/stories.json">Mashable</a></li>
@@ -62,66 +62,16 @@
         <div id="popUp" class="loader hidden">
           <a href="#" class="closePopUp">X</a>
           <div class="container">
-            <h1>Article title here</h1>
-            <p>
+            <h1 id="popupTitle">Article title here</h1>
+            <p id="popupDescription">
               Article description/content here.
             </p>
-            <a href="#" class="popUpAction" target="_blank">Read more from source</a>
+            <a id="popupUrl" href="#" class="popUpAction" target="_blank">Read more from source</a>
           </div>
         </div>
         <section id="main" class="container">
-          <article class="article">
-            <section class="featuredImage">
-              <img src="images/article_placeholder_1.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article>
-          <article class="article">
-            <section class="featuredImage">
-              <img src="images/article_placeholder_2.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article>
-          <article class="article">
-            <section class="featuredImage">
-              <img src="images/article_placeholder_2.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article>
-          <article class="article">
-            <section class="featuredImage">
-              <img src="images/article_placeholder_1.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article>
+  
+
         </section>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

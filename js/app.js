@@ -6,7 +6,6 @@
 
 
 
-
 // Take li Content and Output it on the News Source
 
 $('body').on('click', '#NewsSources li', function(){
@@ -15,8 +14,36 @@ $('body').on('click', '#NewsSources li', function(){
 	$(this).siblings().removeClass('selected');
 	$(this).addClass('selected');
 
+});
 
-})
+
+
+
+
+$('body').on('click', '.article', function() {
+	//populate popup overlay with article information
+	var articleTitle = $(this).children('.articleContent').find('h3').text();
+	console.log(this);
+	var lifestyle = $(this).children('.articleContent').children('h6').text();
+	var articleUrl = $(this).children('.articleContent').children('a').attr('data-articleUrl');
+	$('#popupTitle').text(articleTitle);
+	$('#popupDescription').text(lifestyle);
+	$('#popupUrl').attr('href', articleUrl );
+	// show popup overlay
+	$('#popUp').show();
+	$('#popUp').removeClass('loader')
+	$('.container').show();
+	// on 'x' hide popup overlay
+	$('#popUp').on('click','.closePopUp', function(){
+		$('#popUp').hide();
+		$('#popUp').addClass('loader')
+		$('#popUp .container').hide();
+
+		});
+
+});
+ 
+
 
 // create a request to search for articles when 'search' is clicked
 
@@ -31,6 +58,8 @@ $(document).ready(function() {
 		}); 
 
 });
+
+
 
 // compile HTML function
 
@@ -134,6 +163,9 @@ var compileHtml = function (articleHtml) {
 	} // end of Reddit function
 
 
-  
+$.ajax({
+  url: 'https://accesscontrolalloworiginall.herokuapp.com/http://digg.com/api/news/popular.json',
+  success: populateDigg
+});
 
 }); //document ready function
