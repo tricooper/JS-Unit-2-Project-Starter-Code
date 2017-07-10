@@ -65,8 +65,9 @@ var compileHtml = function (articleHtml) {
 		var posterUrl = data.data.feed[0].content.media.images[0].url;
 	// 	 for loop to loop through data
 	$('#main').html('');
-	for (var i = 0; i < 4; i ++ ) {
-		var feed = data.data.feed[i];
+	var feedArray = data.data.feed;
+	for (var i = 0; i < feedArray.length; i ++ ) {
+		var feed = data.data.feed[i]
 		var articleObj = {
 			articlePoster: feed.content.media.images[0].original_url,
 			impressions: feed.fb_shares.count,
@@ -89,7 +90,8 @@ var compileHtml = function (articleHtml) {
 	var populateMashable = function(data) {
 	// 	 for loop to loop through data
 	$('#main').html('');
-	for (var i = 0; i < 4; i ++ ) {
+	var feedArray = data.new;
+	for (var i = 0; i < feedArray.length; i ++ ) {
 		var feed = data.new[i];
 		var articleObj = {
 			articlePoster: feed.image,
@@ -115,7 +117,8 @@ var compileHtml = function (articleHtml) {
 	console.log(data);
 	console.log(data.data.children[0].data.title);
 	$('#main').html('');
-	for (var i = 0; i < 4; i ++ ) {
+	var feedArray = data.data.children;
+	for (var i = 0; i < feedArray.length; i ++ ) {
 		var feed = data.data.children[i];
 		var articleObj = {
 			articlePoster: feed.data.thumbnail,
